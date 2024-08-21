@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'frank-regular': ['Franklin Gothic Book Regular'],
+      'frank-heavy': ['Franklin Gothic Book Heavy']
+    }
   },
   plugins: [],
 }
