@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
     <nav className="bg-white text-black shadow-lg">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div >
+        <div>
           <img src={diflenLogo} alt="Diflen Logo" className="h-10" />
         </div>
 

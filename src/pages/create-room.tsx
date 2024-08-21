@@ -30,7 +30,7 @@ export function CreateRoom() {
       <header>
         <Navbar />
       </header>
-      <main className="bg-white dark:bg-neutral-950 h-screen flex items-center justify-center px-4">
+      <main className="bg-white dark:bg-black h-screen flex items-center justify-center px-4">
         <div className="max-w-[450px] flex flex-col gap-6">
           <div className="flex items-center justify-center">
             <img src={logoD} alt="AMA" className="w-16 h-16 " />
@@ -55,7 +55,7 @@ export function CreateRoom() {
 
             <button
               type="submit"
-              className="bg-black text-white px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-slate-500"
+              className="bg-black text-white px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-slate-600"
             >
               Criar sala
               <ArrowRight className="size-4" />

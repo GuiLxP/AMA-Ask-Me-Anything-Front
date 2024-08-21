@@ -23,10 +23,10 @@ export function Messages() {
   })
 
   return (
-    <ol className="list-decimal list-outside px-3 space-y-8">
+    <ol className="text-black dark:text-white list-decimal list-outside px-3 space-y-8">
       {sortedMessages.map(message => {
         return (
-          <Message 
+          <Message
             key={message.id}
             id={message.id}
             text={message.text}

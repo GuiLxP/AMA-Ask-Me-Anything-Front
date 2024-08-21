@@ -54,14 +54,14 @@ export function Message({
   }
 
   return (
-    <li data-answered={answered} className="ml-4 leading-relaxed text-zinc-100 data-[answered=true]:opacity-50 data-[answered=true]:pointer-events-none">
+    <li data-answered={answered} className="ml-4 leading-relaxed text-zinc-800 dark:text-zinc-100 data-[answered=true]:opacity-50 data-[answered=true]:pointer-events-none">
       {text}
 
       {hasReacted ? (
         <button 
           type="button" 
           onClick={removeMessageReactionAction} 
-          className="mt-3 flex items-center gap-2 text-orange-400 text-sm font-medium hover:text-orange-500"
+          className="mt-3 flex items-center gap-2 text-emerald-400 dark:text-emerald-400 text-sm font-medium hover:text-emerald-300 dark:hover:text-emerald-500"
         >
           <ArrowUp className="size-4" />
           Curtir pergunta ({amountOfReactions})
@@ -70,7 +70,7 @@ export function Message({
         <button 
           type="button" 
           onClick={createMessageReactionAction} 
-          className="mt-3 flex items-center gap-2 text-zinc-400 text-sm font-medium hover:text-zinc-300"
+          className="mt-3 flex items-center gap-2 text-zinc-500 text-sm font-medium hover:text-zinc-400"
         >
           <ArrowUp className="size-4" />
           Curtir pergunta ({amountOfReactions})
