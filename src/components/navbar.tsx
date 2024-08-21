@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white text-black shadow-lg">
+    <nav className="bg-white dark:bg-black text-black shadow-lg">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
@@ -18,13 +18,13 @@ const Navbar: React.FC = () => {
 
         {/* Menu para dispositivos maiores */}
         <div className="hidden md:flex space-x-8">
-          <a href="#" className="hover:text-slate-400 transition duration-300">Home</a>
-          <a href="#" className="hover:text-slate-400 transition duration-300">Salas</a>
+          <a href="#" className="dark:text-white hover:text-slate-400 transition duration-300">Home</a>
+          <a href="#" className="dark:text-white hover:text-slate-400 transition duration-300">Salas</a>
         </div>
 
         {/* Menu hamburguer para dispositivos móveis */}
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="relative z-10 block text-black focus:outline-none">
+          <button onClick={toggleMenu} className="relative z-10 block dark:text-white text-black focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
