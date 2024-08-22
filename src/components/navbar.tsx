@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
-import diflenLogo from '../assets/DIFLEN LOGO.svg'
+import React, { useEffect, useState } from 'react';
+import diflenLogoWhite from '../assets/DIFLEN LOGO WHITE.png'
+import diflenLogoBlack from '../assets/DIFLEN LOGO BLACK.png'
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [theme, setTheme] = useState('light');
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setTheme(currentTheme);
+
+    const themeListener = (e: MediaQueryListEvent) => {
+      setTheme(e.matches ? 'dark' : 'light');
+    };
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', themeListener);
+
+    return () => {
+      window.matchMedia('(prefers-color_scheme: dark)').removeEventListener('change', themeListener);
+    };
+  }, []);
 
   return (
     <nav className="bg-white dark:bg-black text-black shadow-lg">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div>
-          <img src={diflenLogo} alt="Diflen Logo" className="h-10" />
+          <img src={theme === 'light' ? diflenLogoBlack : diflenLogoWhite} alt="Diflen Logo" className="h-10" />
         </div>
 
         {/* Menu para dispositivos maiores */}
