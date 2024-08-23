@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import diflenLogoWhite from '../assets/DIFLEN LOGO WHITE.png'
 import diflenLogoBlack from '../assets/DIFLEN LOGO BLACK.png'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { Menu } from 'lucide-react';
 
-const Navbar: React.FC = () => {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState('light');
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -23,26 +28,40 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  function redirectToRooms() {
+    try {
+      navigate(`/rooms`)
+    } catch {
+      toast.error('Erro ao ir para salas!')
+    }
+  }
+
+  function redirectToHome() {
+    try {
+      navigate(`/`)
+    } catch {
+      toast.error('Erro ao voltar para tela inicial!')
+    }
+  }
+
   return (
-    <nav className="bg-white dark:bg-black text-black shadow-lg">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="bg-white dark:bg-black px-14 py-4 text-black shadow-lg">
+      <div className="container mx-auto  flex items-center justify-between">
         {/* Logo */}
-        <div>
+        <button onClick={redirectToHome}>
           <img src={theme === 'light' ? diflenLogoBlack : diflenLogoWhite} alt="Diflen Logo" className="h-10" />
-        </div>
+        </button>
 
         {/* Menu para dispositivos maiores */}
         <div className="hidden md:flex space-x-8">
-          <a href="#" className="dark:text-white hover:text-slate-400 transition duration-300">Home</a>
-          <a href="#" className="dark:text-white hover:text-slate-400 transition duration-300">Salas</a>
+          <button onClick={redirectToHome} className="text-black dark:text-white hover:text-slate-400 transition duration-300">Início</button>
+          <button onClick={redirectToRooms} className="text-black dark:text-white hover:text-slate-400 transition duration-300">Salas</button>
         </div>
 
         {/* Menu hamburguer para dispositivos móveis */}
         <div className="md:hidden">
           <button onClick={toggleMenu} className="relative z-10 block dark:text-white text-black focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+            <Menu />
           </button>
         </div>
       </div>
@@ -55,12 +74,11 @@ const Navbar: React.FC = () => {
           </button>
         </div>
         <div className="flex flex-col items-center space-y-6 mt-10">
-          <a href="#" className="text-white text-xl hover:text-slate-400 transition duration-300">Home</a>
-          <a href="#" className="text-white text-xl hover:text-slate-400 transition duration-300">Salas</a>
+          <button onClick={redirectToHome} className="text-white hover:text-slate-400 transition duration-300">Início</button>
+          <button onClick={redirectToRooms} className="text-white hover:text-slate-400 transition duration-300">Salas</button>
         </div>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
