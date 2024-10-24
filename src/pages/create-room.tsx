@@ -15,7 +15,7 @@ export function CreateRoom() {
           </div>
 
           <p className="leading-relaxed text-zinc-900 dark:text-zinc-300 text-center">
-            Crie uma sala pública de AMA (Ask me anything) e priorize as perguntas mais importantes para a comunidade.
+            Crie uma sala pública para perguntas e priorize as questões mais relevantes para a comunidade.
           </p>
           <CreateRoomForm />
         </div>

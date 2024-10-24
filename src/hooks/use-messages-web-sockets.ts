@@ -13,7 +13,7 @@ type WebhookMessage =
   | { kind: "message_reaction_decreased"; value: { id: string; count: number } };
 
 export function useMessagesWebSockets({
-  roomId,
+  roomId
 }: useMessagesWebSocketsParams) {
   const queryClient = useQueryClient()
 

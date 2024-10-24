@@ -6,6 +6,7 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from './lib/react-query'
 import { Rooms } from './pages/rooms'
 import { AdminRooms } from './pages/admin-room-page'
+import { AdminAnswerPage } from './pages/admin-answer-page'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/administracao-das-salas/admin2025/uuids',
     element: <AdminRooms />
+  },
+  {
+    path: '/administracao-das-salas/admin2025/uuids/respostas',
+    element: <AdminAnswerPage />
   }
 ])
 

@@ -6,10 +6,11 @@ import { toast } from "sonner";
 import { removeMessageReaction } from "../http/remove-message-reaction";
 
 interface MessageProps {
-  id: string
-  text: string
-  amountOfReactions: number
-  answered?: boolean
+  id: string;
+  text: string;
+  amountOfReactions: number;
+  answered?: boolean;
+  answer?: string; // Adiciona a propriedade de resposta
 }
 
 export function Message({ 
@@ -17,40 +18,37 @@ export function Message({
   text, 
   amountOfReactions, 
   answered = false,
+  answer,
 }: MessageProps) {
-  const { roomId } = useParams()
-  const [hasReacted, setHasReacted] = useState(false)
-
-  if (!roomId) {
-    throw new Error('Messages components must be used within room page')
-  }
+  const { roomId } = useParams();
+  const [hasReacted, setHasReacted] = useState(false);
 
   async function createMessageReactionAction() {
     if (!roomId) {
-      return
+      return;
     }
 
     try {
-      await createMessageReaction({ messageId, roomId })
+      await createMessageReaction({ messageId, roomId });
     } catch {
-      toast.error('Falha ao reagir mensagem, tente novamente!')
+      toast.error('Falha ao reagir mensagem, tente novamente!');
     }
 
-    setHasReacted(true)
+    setHasReacted(true);
   }
 
   async function removeMessageReactionAction() {
     if (!roomId) {
-      return
+      return;
     }
 
     try {
-      await removeMessageReaction({ messageId, roomId })
+      await removeMessageReaction({ messageId, roomId });
     } catch {
-      toast.error('Falha ao remover reação, tente novamente!')
+      toast.error('Falha ao remover reação, tente novamente!');
     }
 
-    setHasReacted(false)
+    setHasReacted(false);
   }
 
   return (
@@ -61,7 +59,7 @@ export function Message({
         <button 
           type="button" 
           onClick={removeMessageReactionAction} 
-          className="mt-3 flex items-center gap-2 text-emerald-400 dark:text-emerald-400 text-sm font-medium hover:text-emerald-300 dark:hover:text-emerald-500"
+          className="mt-3 flex items-center gap-2 text-emerald-400 text-sm font-medium hover:text-emerald-300"
         >
           <ArrowUp className="size-4" />
           Curtir pergunta ({amountOfReactions})
@@ -76,6 +74,14 @@ export function Message({
           Curtir pergunta ({amountOfReactions})
         </button>
       )}
+
+      {/* Exibir resposta, se disponível */}
+      {answer && (
+        <div className="mt-4 pl-4 border-l-4 border-emerald-400 text-zinc-700 dark:text-zinc-300">
+          <p className="text-sm font-medium">Resposta:</p>
+          <p>{answer}</p>
+        </div>
+      )}
     </li>
-  )
+  );
 }

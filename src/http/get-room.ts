@@ -1,4 +1,3 @@
-
 export interface GetRoomResponse {
   roomId: string;
   theme: string;
@@ -7,6 +6,7 @@ export interface GetRoomResponse {
 interface GetRoomRequest {
   roomId: string;
 }
+
 export async function getRoom({ roomId }: GetRoomRequest): Promise<GetRoomResponse> {
   const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/rooms/${roomId}`);
 

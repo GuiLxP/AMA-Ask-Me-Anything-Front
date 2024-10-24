@@ -1,15 +1,21 @@
 import { useParams } from "react-router-dom";
 import { Share2 } from "lucide-react";
 import { toast } from "sonner";
-
 import logoDiflen from '../assets/logo.png';
 import { Messages } from "../components/messages";
 import { Suspense } from "react";
 import { CreateMessageForm } from "../components/create-message-form";
 import { Navbar } from "../components/navbar";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getRoom } from "../http/get-room";
 
 export function Room() {
-  const { roomId } = useParams();
+  const { roomId } = useParams<{ roomId: string }>();
+
+  const { data } = useSuspenseQuery({
+    queryKey: ['room', roomId],
+    queryFn: () => getRoom({ roomId: roomId || '' }),
+  });
 
   function handleShareRoom() {
     const url = window.location.href.toString();
@@ -28,14 +34,14 @@ export function Room() {
         <Navbar />
       </header>
       <h1 className="px-20 py-4 text-4xl font-extrabold text-gray-900 dark:text-white leading-tight">
-        <p className="text-red-600">Sala: desisto por hoje </p>
+        <p className="text-white">{data.theme}</p>
       </h1>
       <main className="dark:bg-zinc-950 bg-white">
         <div className="mx-auto max-w-[640px] flex flex-col gap-6 py-10 px-4">
           <div className="flex items-center gap-3 px-3">
             <img src={logoDiflen} alt="logo Diflen" className="h-10 w-10" />
             <span className="text-sm text-zinc-500 truncate">
-              Código da sala: <span className="text-black dark:text-zinc-300">{roomId}</span>
+              Código da sala: <span className="text-black dark:text-white">{data?.roomId}</span>
             </span>
             <button
               type="submit"

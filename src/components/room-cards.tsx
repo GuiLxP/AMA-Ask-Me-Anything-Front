@@ -13,14 +13,14 @@ export function RoomCards() {
     queryFn: () => getRooms(),
   });
 
-  async function handleGetRoom(roomId: string, theme: string) {
+  async function handleGetRoom(roomId: string) {
     if (!roomId) {
       toast.error('ID da sala não encontrado!');
       return;
     }
 
     try {
-      await getRoom({ roomId, theme });
+      await getRoom({ roomId });
       navigate(`/room/${roomId}`);
     } catch {
       toast.error('Erro ao entrar na sala!');
@@ -41,7 +41,7 @@ export function RoomCards() {
             <b>Código da sala:</b> <span className="dark:text-white">{room.roomId}</span>
           </p>
           <button
-            onClick={() => handleGetRoom(room.roomId, room.theme)}
+            onClick={() => handleGetRoom(room.roomId)}
             className="h-8 bg-black text-white px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-slate-600"
           >
             Entrar
